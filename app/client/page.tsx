@@ -19,8 +19,6 @@ const ClientPage = () => {
       });
   }, []);
 
-  console.log(data);
-
   return (
     <div>
       <h1 className="text-4xl font-semibold flex items-center justify-center underline my-10">
