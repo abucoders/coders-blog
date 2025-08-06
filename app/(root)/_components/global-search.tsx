@@ -13,7 +13,7 @@ import GlobalBadge from "./global-badge";
 const GlobalSearch = () => {
   return (
     <Drawer>
-      <DrawerTrigger className="hover:bg-blue-400/20 cursor-pointer rounded-sm transition-colors flex items-center gap-1 px-3 py-2">
+      <DrawerTrigger className="hover:bg-primary/20 cursor-pointer rounded-sm transition-colors flex items-center gap-1 px-3 py-2">
         <Search className="size-4" />
         <span className="hidden md:flex">Search</span>
       </DrawerTrigger>

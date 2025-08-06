@@ -1,11 +1,19 @@
+"use client";
+
 import ModeToggle from "@/components/shared/mode-toggle";
 import { navLinks } from "@/constants";
 import Link from "next/link";
 import GlobalSearch from "./global-search";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import Mobile from "./mobile";
 
 const Navbar = () => {
+  // Hooks
+  const pathName = usePathname();
+
   return (
-    <div className="h-[10vh] backdrop-blur-sm border-b fixed z-40 inset-0 bg-background">
+    <div className="h-[10vh] backdrop-blur-sm border-b fixed z-40 inset-0 bg-background max-md:px-4">
       <div className="container max-w-6xl mx-auto h-[10vh] w-full flex items-center justify-between">
         {/* Logo */}
         <Link href={"/"}>
@@ -18,7 +26,10 @@ const Navbar = () => {
             <Link
               key={nav.name}
               href={nav.route}
-              className="gap-1 hover:bg-blue-400/20 py-1 px-3 cursor-pointer rounded-sm transition-colors"
+              className={cn(
+                pathName === nav.route && "text-primary/90",
+                "gap-1 hover:bg-primary/20 py-1 px-3 cursor-pointer rounded-sm transition-colors"
+              )}
             >
               {nav.name}
             </Link>
@@ -28,8 +39,8 @@ const Navbar = () => {
         {/* Search */}
         <div className="flex items-center gap-1">
           <GlobalSearch />
-
           <ModeToggle />
+          <Mobile />
         </div>
       </div>
     </div>
