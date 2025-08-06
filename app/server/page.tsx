@@ -1,4 +1,10 @@
 import { Service } from "@/server";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ServerPage - Create Next App",
+  description: "This is a server-side rendered page in Next.js",
+};
 
 const ServerPage = async () => {
   const data = await Service.getPosts();
