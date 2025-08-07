@@ -29,26 +29,30 @@ const Mobile = () => {
       </SheetTrigger>
 
       <SheetContent side="left">
-        <Link href={"/"} className="pl-4 pt-4">
-          <h1 className="text-3xl font-creteRound">ABUcoders</h1>
-        </Link>
-
-        <Separator className="my-3" />
-
-        <div className="flex flex-col space-y-3">
-          {navLinks.map(nav => (
-            <Link
-              key={nav.route}
-              href={nav.route}
-              className={cn(
-                pathName === nav.route && "text-primary/90 bg-primary/20",
-                "flex items-center gap-2 hover:bg-primary/20 py-2 px-3 cursor-pointer rounded-sm transition-colors"
-              )}
-            >
-              <nav.icon className="size-5" /> {nav.name}
+        <SheetHeader>
+          <SheetTitle>
+            <Link href={"/"}>
+              <h1 className="text-3xl font-creteRound">ABUcoders</h1>
             </Link>
-          ))}
-        </div>
+          </SheetTitle>
+
+          <Separator className="my-3" />
+
+          <SheetDescription className="flex flex-col space-y-3">
+            {navLinks.map(nav => (
+              <Link
+                key={nav.route}
+                href={nav.route}
+                className={cn(
+                  pathName === nav.route && "text-primary/90 bg-primary/20",
+                  "flex items-center gap-2 hover:bg-primary/20 py-2 px-3 cursor-pointer rounded-sm transition-colors"
+                )}
+              >
+                <nav.icon className="size-5" /> {nav.name}
+              </Link>
+            ))}
+          </SheetDescription>
+        </SheetHeader>
       </SheetContent>
     </Sheet>
   );
