@@ -4,7 +4,7 @@ import { blogs } from "@/constants";
 
 const HomePage = () => {
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto overflow-hidden">
       <div className="relative min-h-[60vh] flex items-center justify-center">
         {/* Bagraund lines */}
         <BgArrow />
@@ -18,7 +18,7 @@ const HomePage = () => {
         <span>Recent posts</span>
       </h2>
 
-      <div className="flex flex-col space-y-24 mt-24">
+      <div className="flex flex-col space-y-24 mt-24 max-md:p-2">
         {blogs.map(blog => (
           <BlogCard key={blog.title} {...blog} />
         ))}
