@@ -20,7 +20,7 @@ const HomePage = () => {
 
       <div className="flex flex-col space-y-24 mt-24 max-md:p-2">
         {blogs.map(blog => (
-          <BlogCard key={blog.title} {...blog} />
+          <BlogCard key={blog.title} blog={blog} />
         ))}
       </div>
     </div>

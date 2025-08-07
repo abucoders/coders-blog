@@ -3,10 +3,22 @@ import { CalendarDays, Clock, Dot, Minus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
+import { cn } from "@/lib/utils";
 
-const BlogCard = (blog: IBlog) => {
+interface Props {
+  blog: IBlog;
+  isVertical?: boolean;
+}
+
+const BlogCard = ({ blog, isVertical }: Props) => {
   return (
-    <Link href={"/"} className="grid gap-4 group grid-cols-1 md:grid-cols-2">
+    <Link
+      href={"/"}
+      className={cn(
+        "grid gap-4 group",
+        isVertical ? "md:grid-cols-1" : "md:grid-cols-2"
+      )}
+    >
       <div className="relative bg-secondary rounded-md p-2">
         <Image
           width={650}
