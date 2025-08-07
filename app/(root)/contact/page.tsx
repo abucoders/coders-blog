@@ -43,7 +43,7 @@ const ContactPage = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4 mt-6">
+      <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4 mt-6 max-md:p-2">
         <div className="flex flex-col">
           <h1 className="text-4xl font-creteRound">Contact ABUcoders</h1>
           <p className="mt-2 text-muted-foreground">

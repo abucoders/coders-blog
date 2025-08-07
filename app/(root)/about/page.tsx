@@ -14,7 +14,7 @@ import Link from "next/link";
 
 const AboutPage = () => {
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto max-md:p-2">
       <div className="relative min-h-[40vh] flex items-center justify-center flex-col">
         <h2 className="text-center text-4xl section-title font-creteRound">
           <span>About Us</span>

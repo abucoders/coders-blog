@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const ArchivePage = () => {
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto max-md:p-2">
       <div className="relative min-h-[40vh] flex items-center justify-end flex-col">
         <p className="text-lg text-muted-foreground">Showing posts from</p>
         <h2 className="text-center text-4xl section-title font-creteRound mt-2">

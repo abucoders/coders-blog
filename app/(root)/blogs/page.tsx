@@ -42,7 +42,7 @@ function BlogsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 max-md:grid-cols-1 gap-x-4 gap-y-24 mt-24">
+      <div className="grid grid-cols-2 max-md:grid-cols-1 gap-x-4 gap-y-24 mt-24 max-md:p-2">
         {blogs.map(blog => (
           <BlogCard key={blog.title} blog={blog} isVertical />
         ))}
