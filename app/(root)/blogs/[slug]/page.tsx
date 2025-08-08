@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { content } from "@/constants";
+import { getReadingTime } from "@/lib/utils";
+import { getBlog } from "@/service/blog.service";
+import { format } from "date-fns";
 import parse from "html-react-parser";
 import {
   ArrowUpRight,
@@ -21,39 +23,42 @@ interface Props {
   };
 }
 
-function SlugPage({ params: { slug } }: Props) {
+async function SlugPage({ params: { slug } }: Props) {
+  // Fetch the blog post based on the slug
+  const blog = await getBlog(slug);
+
   return (
     <div className="pt-[15vh] max-w-5xl mx-auto max-md:px-2">
       <h1 className="lg:text-6xl md:text-5xl text-4xl font-creteRound">
-        The AGI hype train is running out of steam
+        {blog.title}
       </h1>
 
       <div className="flex items-center flex-wrap max-md:justify-center gap-4 mt-4">
         <div className="flex items-center gap-2">
           <Image
-            src={"/author/thomas-macaulay.jpg"}
-            alt="author"
+            src={blog.author.image.url}
+            alt={blog.author.name}
             width={30}
             height={30}
             className="object-cover rounded-sm"
           />
-          <p>by Samar</p>
+          <p>{blog.author.name}</p>
         </div>
         <Minus />
         <div className="flex items-center gap-2">
           <Clock className="w-5 h-5" />
-          <p>01 min read</p>
+          <p>{getReadingTime(blog.content.html).text}</p>
         </div>
         <Minus />
         <div className="flex items-center gap-2">
           <CalendarDays className="w-5 h-5" />
-          <p>Dec 5, 2021</p>
+          <p>{format(blog.createdAt, "dd MMM YYY")}</p>
         </div>
       </div>
 
       <Image
-        src={"/blogs/02.jpg"}
-        alt="alt"
+        src={blog.image.url}
+        alt={blog.title}
         width={`1120`}
         height={`595`}
         className="mt-4 rounded-md"
@@ -82,26 +87,26 @@ function SlugPage({ params: { slug } }: Props) {
             </div>
           </div>
         </div>
-        <div className="flex-1 prose dark:prose-invert">{parse(content)}</div>
+        <div className="flex-1 prose dark:prose-invert">
+          {parse(blog.content.html)}
+        </div>
       </div>
 
       <div className="flex mt-6 gap-6 items-center max-md:flex-col">
         <Image
-          src={"/author/chris-impey.jpg"}
-          alt="author"
+          src={blog.author.image.url}
+          alt={blog.author.name}
           width="155"
           height="155"
           className="rounded-md max-md:self-start"
         />
         <div className="flex-1 flex flex-col space-y-4">
-          <h2 className="text-3xl font-creteRound">Thomas Macaulay</h2>
+          <h2 className="text-3xl font-creteRound">{blog.author.name}</h2>
           <p className="line-clamp-2 text-muted-foreground">
-            Thomas Macaulay is a writer based in New York City. He is interested
-            in all things tech, science, and photography related, and likes to
-            yo-yo in
+            {blog.author.bio}
           </p>
           <Link
-            href={"/"}
+            href={`/author/${blog.id}`}
             className="flex items-center gap-2 hover:text-primary underline transition-colors"
           >
             <span>See all posts by this author</span>

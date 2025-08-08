@@ -2,7 +2,7 @@ import { CalendarDays, Clock, Dot, Minus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
-import { cn } from "@/lib/utils";
+import { cn, getReadingTime } from "@/lib/utils";
 import { IBlog } from "@/types/service.type";
 import { format } from "date-fns";
 
@@ -14,7 +14,7 @@ interface Props {
 const BlogCard = ({ blog, isVertical }: Props) => {
   return (
     <Link
-      href={"/"}
+      href={`/blogs/${blog.slug}`}
       className={cn(
         "grid gap-4 group",
         isVertical ? "md:grid-cols-1" : "md:grid-cols-2"
@@ -40,7 +40,7 @@ const BlogCard = ({ blog, isVertical }: Props) => {
           <Minus className="size-5" />
           <div className="flex items-center gap-2">
             <Clock className="size-5" />
-            <span>02 min read</span>
+            <span>{getReadingTime(blog.content.html).text}</span>
           </div>
         </div>
 
