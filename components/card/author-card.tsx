@@ -1,12 +1,18 @@
-import { IAuthor } from "@/types";
+import { IAuthor } from "@/types/service.type";
 import Image from "next/image";
 
-const AuthorCard = ({ image, name }: IAuthor) => {
+interface Props extends IAuthor {
+  blogs: {
+    slug: string;
+  }[];
+}
+
+const AuthorCard = ({ image: { url }, name, blogs }: Props) => {
   return (
     <div className="flex flex-col space-y-2 w-52 text-center">
       <div className="w-full h-52 relative">
         <Image
-          src={image}
+          src={url}
           alt={name}
           fill
           className="object-cover rounded-md grayscale hover:grayscale-0 transition-all"
@@ -15,7 +21,10 @@ const AuthorCard = ({ image, name }: IAuthor) => {
 
       <h2 className="text-2xl font-creteRound">{name}</h2>
       <p className="text-muted-foreground">
-        <span className="font-bold text-foreground">04</span> Published posts
+        <span className="font-bold text-foreground">
+          {blogs.length <= 9 ? "0" + blogs.length : blogs.length}
+        </span>{" "}
+        Published posts
       </p>
     </div>
   );

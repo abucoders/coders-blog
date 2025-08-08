@@ -7,12 +7,16 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { authors } from "@/constants";
+import { getAuthors } from "@/service/author.service";
 import { Dot, Home } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const AboutPage = () => {
+const AboutPage = async () => {
+  // Fetch authors from the service
+  const authors = await getAuthors();
+
+  console.log(authors);
   return (
     <div className="max-w-6xl mx-auto max-md:p-2">
       <div className="relative min-h-[40vh] flex items-center justify-center flex-col">
@@ -98,7 +102,7 @@ const AboutPage = () => {
 
       <div className="flex justify-around max-md:flex-col max-md:space-y-4 max-md:items-center">
         {authors.map(author => (
-          <AuthorCard key={author.name} {...author} />
+          <AuthorCard key={author.id} {...author} blogs={[author.blogs]} />
         ))}
       </div>
     </div>
