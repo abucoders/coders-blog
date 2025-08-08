@@ -17,6 +17,7 @@ export interface IBlog {
   title: string;
   slug: string;
   description: string;
+  createdAt: string;
   image: Image;
   content: Content;
   tag: CategorieTag[];

@@ -11,6 +11,7 @@ export const getBlogs = async () => {
         title
         slug
         description
+        createdAt
         image {
           url
         }
@@ -39,13 +40,6 @@ export const getBlogs = async () => {
     }
   `;
 
-  type ResultType = {
-    blogs: IBlog[];
-  };
-
-  const result: ResultType = await request<{ blogs: IBlog[] }>(
-    graphqlAPI,
-    query
-  );
+  const result = await request<{ blogs: IBlog[] }>(graphqlAPI, query);
   return result.blogs;
 };

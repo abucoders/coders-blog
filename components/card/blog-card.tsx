@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils";
 import { IBlog } from "@/types/service.type";
+import { format } from "date-fns";
 
 interface Props {
   blog: IBlog;
@@ -34,7 +35,7 @@ const BlogCard = ({ blog, isVertical }: Props) => {
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2">
             <CalendarDays className="size-5" />
-            <span>12 dec</span>
+            <span>{format(blog.createdAt, "dd MMM Y")}</span>
           </div>
           <Minus className="size-5" />
           <div className="flex items-center gap-2">
