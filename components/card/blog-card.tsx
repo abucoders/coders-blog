@@ -1,9 +1,9 @@
-import { IBlog } from "@/types";
 import { CalendarDays, Clock, Dot, Minus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
 import { cn } from "@/lib/utils";
+import { IBlog } from "@/types/service.type";
 
 interface Props {
   blog: IBlog;
@@ -23,7 +23,7 @@ const BlogCard = ({ blog, isVertical }: Props) => {
         <Image
           width={650}
           height={335}
-          src={blog.image}
+          src={blog.image.url}
           alt={blog.title}
           className="px-2 md:px-7 rounded-md group-hover:-translate-y-7 -translate-y-6 transition-all object-cover grayscale group-hover:grayscale-0 max-md:-translate-y-2 max-md:group-hover:-translate-y-3"
         />
@@ -34,7 +34,7 @@ const BlogCard = ({ blog, isVertical }: Props) => {
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2">
             <CalendarDays className="size-5" />
-            <span>{blog.date}</span>
+            <span>12 dec</span>
           </div>
           <Minus className="size-5" />
           <div className="flex items-center gap-2">
@@ -53,22 +53,22 @@ const BlogCard = ({ blog, isVertical }: Props) => {
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <Image
-              src={"/author/thomas-macaulay.jpg"}
-              alt={"author"}
+              src={blog.author.image.url}
+              alt={blog.author.name}
               width={30}
               height={30}
               className="object-cover rounded-sm"
             />
-            <span>by {blog.author}</span>
+            <span>by {blog.author.name}</span>
             <Dot className="size-5" />
             <div className="flex items-center gap-2">
-              {blog.tags.map(tag => (
+              {blog.tag.map(item => (
                 <Badge
-                  key={tag}
+                  key={item.title}
                   variant={"secondary"}
                   className="rounded-sm px-2 py-1 cursor-pointer"
                 >
-                  {tag}
+                  {item.title}
                 </Badge>
               ))}
             </div>

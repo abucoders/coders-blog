@@ -3,14 +3,15 @@ export interface ChildProps {
 }
 
 // Blogs interface
-export interface IBlog {
-  title: string;
-  description: string;
-  author: string;
-  date: string;
-  image: string;
-  tags: string[];
-}
+// export interface IBlog {
+//   id: IBlog;
+//   title: string;
+//   description: string;
+//   author: string;
+//   date: string;
+//   image: string;
+//   tags: string[];
+// }
 
 // Author intereface
 export interface IAuthor {

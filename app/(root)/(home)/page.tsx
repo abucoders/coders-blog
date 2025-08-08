@@ -1,8 +1,11 @@
 import BlogCard from "@/components/card/blog-card";
 import BgArrow from "@/components/shared/bg-arrow";
-import { blogs } from "@/constants";
+import { getBlogs } from "@/service/blog.service";
 
-const HomePage = () => {
+const HomePage = async () => {
+  // Fetching blogs from the service
+  const blogs = await getBlogs();
+
   return (
     <div className="max-w-6xl mx-auto overflow-hidden">
       <div className="relative min-h-[60vh] flex items-center justify-center">
