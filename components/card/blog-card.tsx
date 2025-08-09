@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarDays, Clock, Dot, Minus } from "lucide-react";
+import { CalendarDays, Clock, Dot, Layers2, Minus, Tag } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
@@ -19,11 +19,15 @@ const BlogCard = ({ blog, isVertical }: Props) => {
   const router = useRouter();
 
   // Handlers
-  const onTag = (e: React.MouseEvent<HTMLSpanElement>, slug: string) => {
+  const onHandlers = (
+    e: React.MouseEvent<HTMLSpanElement>,
+    slug: string,
+    push: "categories" | "tags"
+  ) => {
     e.stopPropagation();
     e.preventDefault();
 
-    router.push(`/tags/${slug}`);
+    router.push(`/${push}/${slug}`);
   };
 
   return (
@@ -66,7 +70,7 @@ const BlogCard = ({ blog, isVertical }: Props) => {
 
         {/* Author info */}
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center flex-wrap gap-1">
             <Image
               src={blog.author.image.url}
               alt={blog.author.name}
@@ -74,16 +78,33 @@ const BlogCard = ({ blog, isVertical }: Props) => {
               height={30}
               className="object-cover rounded-sm"
             />
-            <span>by {blog.author.name}</span>
+            <span className="max-w-48 line-clamp-1">by {blog.author.name}</span>
+
             <Dot className="size-5" />
-            <div className="flex items-center gap-2">
+
+            <div className="flex items-center gap-1">
               {blog.tag.map(item => (
                 <Badge
                   key={item.title}
                   variant={"secondary"}
-                  className="rounded-sm px-2 py-1 cursor-pointer"
-                  onClick={e => onTag(e, item.slug)}
+                  className="rounded-sm px-2 py-1 cursor-pointer bg-primary/20"
+                  onClick={e => onHandlers(e, item.slug, "tags")}
                 >
+                  <Tag />
+                  {item.title}
+                </Badge>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-1">
+              {blog.categorie.map(item => (
+                <Badge
+                  key={item.title}
+                  variant={"outline"}
+                  className="rounded-sm px-2 py-1 cursor-pointer border-primary/20"
+                  onClick={e => onHandlers(e, item.slug, "categories")}
+                >
+                  <Layers2 />
                   {item.title}
                 </Badge>
               ))}

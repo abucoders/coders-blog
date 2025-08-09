@@ -16,7 +16,6 @@ const AboutPage = async () => {
   // Fetch authors from the service
   const authors = await getAuthors();
 
-  console.log(authors);
   return (
     <div className="max-w-6xl mx-auto max-md:p-2">
       <div className="relative min-h-[40vh] flex items-center justify-center flex-col">
