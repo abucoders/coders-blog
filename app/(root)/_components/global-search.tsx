@@ -27,7 +27,12 @@ const GlobalSearch = () => {
 
         {/* Global search badges */}
         {globalSearchBadges.map(c => (
-          <GlobalBadge key={c.title} items={c.items} title={c.title} />
+          <GlobalBadge
+            key={c.title}
+            items={c.items}
+            title={c.title}
+            slug={c.slug}
+          />
         ))}
       </DrawerContent>
     </Drawer>

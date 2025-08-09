@@ -7,6 +7,20 @@ interface ITagBlogs extends CategorieTag {
   blogs: IBlog[];
 }
 
+export const getTags = async () => {
+  const query = gql`
+    query Tags {
+      tags {
+        title
+        slug
+      }
+    }
+  `;
+
+  const result = await request<{ tags: CategorieTag[] }>(graphqlAPI, query);
+  return result.tags;
+};
+
 export const getTagBlogs = async (slug: string) => {
   const query = gql`
     query Tag($slug: String!) {

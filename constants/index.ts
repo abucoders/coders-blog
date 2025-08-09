@@ -53,10 +53,12 @@ export const popularTags = [
 export const globalSearchBadges = [
   {
     title: "See post by categories",
+    slug: "categories",
     items: popularCategories,
   },
   {
     title: "See post by tags",
+    slug:"tags",
     items: popularTags,
   },
 ];

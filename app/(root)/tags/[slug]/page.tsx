@@ -8,7 +8,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { getTagBlogs } from "@/service/tag.service";
-import { Dot, Home } from "lucide-react";
+import { Dot, Home, Tag } from "lucide-react";
 import Link from "next/link";
 
 interface Props {
@@ -34,6 +34,18 @@ const TagsPage = async ({ params: { slug } }: Props) => {
                 <BreadcrumbLink asChild>
                   <Link href="/" className="flex items-center gap-1">
                     <Home className="size-4" /> Home
+                  </Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+
+              <BreadcrumbSeparator>
+                <Dot className="size-5" />
+              </BreadcrumbSeparator>
+
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/tags" className="flex items-center gap-1">
+                    <Tag className="size-4" /> Tags
                   </Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>

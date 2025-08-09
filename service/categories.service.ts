@@ -7,6 +7,23 @@ interface ICategorieBlogs extends CategorieTag {
   blogs: IBlog[];
 }
 
+export const getCategories = async () => {
+  const query = gql`
+    query Categories {
+      categories {
+        title
+        slug
+      }
+    }
+  `;
+
+  const result = await request<{ categories: CategorieTag[] }>(
+    graphqlAPI,
+    query
+  );
+  return result.categories;
+};
+
 export const getCategorieBlogs = async (slug: string) => {
   const query = gql`
     query CategorieBlogs($slug: String!) {
