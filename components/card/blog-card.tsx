@@ -1,3 +1,5 @@
+"use client";
+
 import { CalendarDays, Clock, Dot, Minus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,6 +7,7 @@ import { Badge } from "../ui/badge";
 import { cn, getReadingTime } from "@/lib/utils";
 import { IBlog } from "@/types/service.type";
 import { format } from "date-fns";
+import { useRouter } from "next/navigation";
 
 interface Props {
   blog: IBlog;
@@ -12,6 +15,17 @@ interface Props {
 }
 
 const BlogCard = ({ blog, isVertical }: Props) => {
+  // Hooks
+  const router = useRouter();
+
+  // Handlers
+  const onTag = (e: React.MouseEvent<HTMLSpanElement>, slug: string) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    router.push(`/tags/${slug}`);
+  };
+
   return (
     <Link
       href={`/blogs/${blog.slug}`}
@@ -35,7 +49,7 @@ const BlogCard = ({ blog, isVertical }: Props) => {
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2">
             <CalendarDays className="size-5" />
-            <span>{format(blog.createdAt, "dd MMM Y")}</span>
+            <span>{format(blog.createdAt, "yyyy/MM/dd")}</span>
           </div>
           <Minus className="size-5" />
           <div className="flex items-center gap-2">
@@ -68,6 +82,7 @@ const BlogCard = ({ blog, isVertical }: Props) => {
                   key={item.title}
                   variant={"secondary"}
                   className="rounded-sm px-2 py-1 cursor-pointer"
+                  onClick={e => onTag(e, item.slug)}
                 >
                   {item.title}
                 </Badge>

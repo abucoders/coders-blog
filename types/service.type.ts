@@ -1,7 +1,7 @@
-type CategorieTag = {
+export interface CategorieTag {
   title: string;
   slug: string;
-};
+}
 
 type Image = {
   url: string;

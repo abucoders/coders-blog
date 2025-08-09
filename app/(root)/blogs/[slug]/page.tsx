@@ -52,7 +52,7 @@ async function SlugPage({ params: { slug } }: Props) {
         <Minus />
         <div className="flex items-center gap-2">
           <CalendarDays className="w-5 h-5" />
-          <p>{format(blog.createdAt, "dd MMM YYY")}</p>
+          <p>{format(blog.createdAt, "yyyy/MM/dd")}</p>
         </div>
       </div>
 
