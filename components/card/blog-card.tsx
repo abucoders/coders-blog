@@ -19,7 +19,7 @@ const BlogCard = ({ blog, isVertical }: Props) => {
   const router = useRouter();
 
   // Handlers
-  const onHandlers = (
+  const onTagCategorie = (
     e: React.MouseEvent<HTMLSpanElement>,
     slug: string,
     push: "categories" | "tags"
@@ -28,6 +28,13 @@ const BlogCard = ({ blog, isVertical }: Props) => {
     e.preventDefault();
 
     router.push(`/${push}/${slug}`);
+  };
+
+  const onAuthor = (e: React.MouseEvent<HTMLSpanElement>, slug: string) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    router.push(`/author/${slug}`);
   };
 
   return (
@@ -71,14 +78,21 @@ const BlogCard = ({ blog, isVertical }: Props) => {
         {/* Author info */}
         <div className="flex items-center gap-4">
           <div className="flex items-center flex-wrap gap-1">
-            <Image
-              src={blog.author.image.url}
-              alt={blog.author.name}
-              width={30}
-              height={30}
-              className="object-cover rounded-sm"
-            />
-            <span className="max-w-48 line-clamp-1">by {blog.author.name}</span>
+            <div
+              className="flex items-center gap-1"
+              onClick={e => onAuthor(e, blog.author.id)}
+            >
+              <Image
+                src={blog.author.image.url}
+                alt={blog.author.name}
+                width={30}
+                height={30}
+                className="object-cover rounded-sm mb-2"
+              />
+              <span className="max-w-48 line-clamp-1">
+                by {blog.author.name}
+              </span>
+            </div>
 
             <Dot className="size-5" />
 
@@ -88,7 +102,7 @@ const BlogCard = ({ blog, isVertical }: Props) => {
                   key={item.title}
                   variant={"secondary"}
                   className="rounded-sm px-2 py-1 cursor-pointer bg-primary/20"
-                  onClick={e => onHandlers(e, item.slug, "tags")}
+                  onClick={e => onTagCategorie(e, item.slug, "tags")}
                 >
                   <Tag />
                   {item.title}
@@ -102,7 +116,7 @@ const BlogCard = ({ blog, isVertical }: Props) => {
                   key={item.title}
                   variant={"outline"}
                   className="rounded-sm px-2 py-1 cursor-pointer border-primary/20"
-                  onClick={e => onHandlers(e, item.slug, "categories")}
+                  onClick={e => onTagCategorie(e, item.slug, "categories")}
                 >
                   <Layers2 />
                   {item.title}

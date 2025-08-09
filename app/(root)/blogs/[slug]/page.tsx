@@ -34,7 +34,10 @@ async function SlugPage({ params: { slug } }: Props) {
       </h1>
 
       <div className="flex items-center flex-wrap max-md:justify-center gap-4 mt-4">
-        <div className="flex items-center gap-2">
+        <Link
+          href={`/author/${blog.author.id}`}
+          className="flex items-center gap-2"
+        >
           <Image
             src={blog.author.image.url}
             alt={blog.author.name}
@@ -43,7 +46,7 @@ async function SlugPage({ params: { slug } }: Props) {
             className="object-cover rounded-sm"
           />
           <p>{blog.author.name}</p>
-        </div>
+        </Link>
         <Minus />
         <div className="flex items-center gap-2">
           <Clock className="w-5 h-5" />
@@ -106,7 +109,7 @@ async function SlugPage({ params: { slug } }: Props) {
             {blog.author.bio}
           </p>
           <Link
-            href={`/author/${blog.id}`}
+            href={`/author/${blog.author.id}`}
             className="flex items-center gap-2 hover:text-primary underline transition-colors"
           >
             <span>See all posts by this author</span>

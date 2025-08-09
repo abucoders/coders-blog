@@ -1,5 +1,6 @@
 import { IAuthor } from "@/types/service.type";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props extends IAuthor {
   blogs: {
@@ -7,9 +8,12 @@ interface Props extends IAuthor {
   }[];
 }
 
-const AuthorCard = ({ image: { url }, name, blogs }: Props) => {
+const AuthorCard = ({ image: { url }, name, blogs, id }: Props) => {
   return (
-    <div className="flex flex-col space-y-2 w-52 text-center">
+    <Link
+      href={`/author/${id}`}
+      className="flex flex-col space-y-2 w-52 text-center"
+    >
       <div className="w-full h-52 relative">
         <Image
           src={url}
@@ -26,7 +30,7 @@ const AuthorCard = ({ image: { url }, name, blogs }: Props) => {
         </span>{" "}
         Published posts
       </p>
-    </div>
+    </Link>
   );
 };
 
