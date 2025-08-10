@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 📝 Personal Blog Platform
 
-First, run the development server:
+A modern, fast, and responsive blog platform built with **Next.js 15** for sharing articles, tutorials, and thoughts.
+It supports Markdown rendering, rich typography, and a smooth reading experience.
+
+## 🚀 Live Demo
+
+- 👉 Live on [blogs.abdulloyev.uz]("https://blogs.abdulloyev.uz/")
+
+## ⚙️ Features
+
+- 📰 **Dynamic Blog Pages** – Automatic blog page generation from data
+
+- **✍️ Markdown + HTML Support** with `html-react-parser`
+
+- **🖋 Rich Typography** powered by `tailwindcss-typography`
+
+- **🎨 Modern UI with Shadcn UI** + TailwindCSS
+
+- **🌙 Dark Mode** with `next-themes`
+
+- **📡 GraphQL API** integration via `graphql-request`
+
+- **📅 Date formatting** using `date-fns`
+
+- **📈 Top Loader Progress Bar** for route changes
+
+- **⚡ Built with Next.js 15 + Turbopack**
+
+## 🛠 Tech Stack
+- **Frontend:** Next.js 15, TypeScript, TailwindCSS, Shadcn UI
+
+- **Styling:** TailwindCSS Typography
+
+- **Data Layer:** GraphQL + graphql-request
+
+- **Form Handling:** React Hook Form
+
+- **Utilities:** Lodash, date-fns
+
+- **UI/UX Enhancements:** next-themes, nextjs-toploader
+
+## 👤 Authors
+
+- [@abucoders](https://github.com/abucoders)
+
+## 🧑‍💻 Getting Started
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  git clone https://github.com/abucoders/coders-blog.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+  cd coders-blog
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Install dependencies
 
-## Learn More
+```bash
+  npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Start the server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+  npm run dev
+```
+## 🔐 Environment Variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To run this project, you will need to add the following environment variables to your **.env** or **.env.local** file
 
-## Deploy on Vercel
+`NEXT_PUBLIC_GRAPHCMS_ENDPOINT` = `https://eu-west-2.cdn.hygraph.com/content/....`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`NEXT_PUBLIC_TELEGRAM_BOT_API` = `7495069756:AAGXQSeJD5NDcz79xT20jV5WD9pkevGwEp0`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`NEXT_PUBLIC_TELEGRAM_CHAT_ID` = `6133573095`
+
+`NEXT_PUBLIC_BASE_URL` = `http://localhost:3000`
+
