@@ -7,10 +7,22 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { baseUrl } from "@/constants";
 import { getAuthors } from "@/service/author.service";
 import { Dot, Home } from "lucide-react";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "About Us | ABUcoders Blog",
+  description: "Learn more about ABUcoders, our mission, and our team.",
+  openGraph: {
+    title: "About Us | ABUcoders Blog",
+    description: "Learn more about ABUcoders, our mission, and our team.",
+    url: `${baseUrl}/about`,
+  },
+};
 
 const AboutPage = async () => {
   // Fetch authors from the service

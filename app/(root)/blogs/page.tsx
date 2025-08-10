@@ -7,9 +7,22 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { baseUrl } from "@/constants";
 import { getBlogs } from "@/service/blog.service";
 import { Dot, Home } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Blogs | ABUcoders Blog",
+  description: "Explore the latest blogs on programming, technology, and more.",
+  openGraph: {
+    title: "Blogs | ABUcoders Blog",
+    description:
+      "Explore the latest blogs on programming, technology, and more.",
+    url: `${baseUrl}/blogs`,
+  },
+};
 
 async function BlogsPage() {
   // Fetch blogs from the service

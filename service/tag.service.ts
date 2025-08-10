@@ -1,5 +1,6 @@
 import { CategorieTag, IBlog } from "@/types/service.type";
 import request, { gql } from "graphql-request";
+import { cache } from "react";
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!;
 
@@ -21,7 +22,7 @@ export const getTags = async () => {
   return result.tags;
 };
 
-export const getTagBlogs = async (slug: string) => {
+export const getTagBlogs = cache(async (slug: string) => {
   const query = gql`
     query Tag($slug: String!) {
       tag(where: { slug: $slug }) {
@@ -68,4 +69,4 @@ export const getTagBlogs = async (slug: string) => {
     slug,
   });
   return result.tag;
-};
+});

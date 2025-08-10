@@ -1,3 +1,6 @@
+export const baseUrl =
+  process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000/";
+
 import {
   Contact2,
   FileCode2,
@@ -58,7 +61,7 @@ export const globalSearchBadges = [
   },
   {
     title: "See post by tags",
-    slug:"tags",
+    slug: "tags",
     items: popularTags,
   },
 ];

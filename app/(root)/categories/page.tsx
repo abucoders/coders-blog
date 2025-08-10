@@ -7,9 +7,23 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { baseUrl } from "@/constants";
 import { getCategories } from "@/service/categories.service";
 import { Dot, Home } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Categories | ABUcoders Blog",
+  description:
+    "Explore various categories of programming and technology blogs.",
+  openGraph: {
+    title: "Categories | ABUcoders Blog",
+    description:
+      "Explore various categories of programming and technology blogs.",
+    url: `${baseUrl}/categories`,
+  },
+};
 
 const Page = async () => {
   const categories = await getCategories();

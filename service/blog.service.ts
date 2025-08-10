@@ -1,5 +1,6 @@
 import { IBlog } from "@/types/service.type";
 import request, { gql } from "graphql-request";
+import { cache } from "react";
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!;
 
@@ -44,7 +45,7 @@ export const getBlogs = async () => {
   return result.blogs;
 };
 
-export const getBlog = async (slug: string) => {
+export const getBlog = cache(async (slug: string) => {
   const query = gql`
     query Blog($slug: String!) {
       blog(where: { slug: $slug }) {
@@ -83,4 +84,4 @@ export const getBlog = async (slug: string) => {
 
   const result = await request<{ blog: IBlog }>(graphqlAPI, query, { slug });
   return result.blog;
-};
+});

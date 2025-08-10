@@ -1,8 +1,31 @@
 import BlogCard from "@/components/card/blog-card";
 import { Badge } from "@/components/ui/badge";
+import { baseUrl } from "@/constants";
 import { getAuthor } from "@/service/author.service";
 import { TicketCheck } from "lucide-react";
 import Image from "next/image";
+
+export async function generateMetadata({ params: { id } }: Props) {
+  const author = await getAuthor(id);
+
+  return {
+    title: author.name,
+    description: author.bio,
+    openGraph: {
+      title: author.name,
+      description: author.bio,
+      url: `${baseUrl}/author/${id}`,
+      images: [
+        {
+          url: author.image.url,
+          width: 1200,
+          height: 630,
+          alt: author.name,
+        },
+      ],
+    },
+  };
+}
 
 interface Props {
   params: {

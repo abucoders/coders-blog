@@ -6,10 +6,24 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { baseUrl } from "@/constants";
 import { getArchiveBlogs } from "@/service/archive.service";
 import { format } from "date-fns";
 import { Archive, Dot, FileCode2, Home } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Archive | ABUcoders Blog",
+  description:
+    "Explore our archive of past blogs on programming and technology.",
+  openGraph: {
+    title: "Archive | ABUcoders Blog",
+    description:
+      "Explore our archive of past blogs on programming and technology.",
+    url: `${baseUrl}/blogs/archive`,
+  },
+};
 
 const ArchivePage = async () => {
   // Fetching blogs from the service

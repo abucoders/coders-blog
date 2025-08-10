@@ -6,6 +6,28 @@ import { ArrowUpRight, CalendarDays, Clock, Minus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ShareBtns } from "../../_components";
+import { baseUrl } from "@/constants";
+
+export async function generateMetadata({ params: { slug } }: Props) {
+  const blog = await getBlog(slug);
+  return {
+    title: blog.title,
+    description: blog.description,
+    openGraph: {
+      title: blog.title,
+      description: blog.description,
+      url: `${baseUrl}/blogs/${slug}`,
+      images: [
+        {
+          url: blog.image.url,
+          width: 1200,
+          height: 630,
+          alt: blog.title,
+        },
+      ],
+    },
+  };
+}
 
 interface Props {
   params: {

@@ -7,9 +7,21 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { baseUrl } from "@/constants";
 import { getTags } from "@/service/tag.service";
 import { Dot, Home } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Tags | ABUcoders Blog",
+  description: "Explore various tags of programming and technology blogs.",
+  openGraph: {
+    title: "Tags | ABUcoders Blog",
+    description: "Explore various tags of programming and technology blogs.",
+    url: `${baseUrl}/tags`,
+  },
+};
 
 const Page = async () => {
   const tags = await getTags();

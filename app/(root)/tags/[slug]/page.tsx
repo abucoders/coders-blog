@@ -11,6 +11,14 @@ import { getTagBlogs } from "@/service/tag.service";
 import { Dot, Home, Tag } from "lucide-react";
 import Link from "next/link";
 
+export async function generateMetadata({ params: { slug } }: Props) {
+  const tag = await getTagBlogs(slug);
+
+  return {
+    title: tag.title,
+  };
+}
+
 interface Props {
   params: {
     slug: string;
