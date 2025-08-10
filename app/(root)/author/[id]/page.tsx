@@ -5,7 +5,8 @@ import { getAuthor } from "@/service/author.service";
 import { TicketCheck } from "lucide-react";
 import Image from "next/image";
 
-export async function generateMetadata({ params: { id } }: Props) {
+export async function generateMetadata({ params }: Props) {
+  const { id } = await params;
   const author = await getAuthor(id);
 
   return {
@@ -28,12 +29,13 @@ export async function generateMetadata({ params: { id } }: Props) {
 }
 
 interface Props {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-const AuthorPage = async ({ params: { id } }: Props) => {
+const AuthorPage = async ({ params }: Props) => {
+  const { id } = await params;
   const author = await getAuthor(id);
 
   return (
@@ -42,8 +44,8 @@ const AuthorPage = async ({ params: { id } }: Props) => {
         <Image
           src={author.image.url}
           alt="author"
-          width="200"
-          height="200"
+          width={200}
+          height={200}
           className="rounded-md max-md:self-start"
         />
         <div className="flex-1 flex flex-col space-y-4">

@@ -8,7 +8,8 @@ import Link from "next/link";
 import { ShareBtns } from "../../_components";
 import { baseUrl } from "@/constants";
 
-export async function generateMetadata({ params: { slug } }: Props) {
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
   const blog = await getBlog(slug);
   return {
     title: blog.title,
@@ -30,12 +31,13 @@ export async function generateMetadata({ params: { slug } }: Props) {
 }
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-async function SlugPage({ params: { slug } }: Props) {
+async function SlugPage({ params }: Props) {
+  const { slug } = await params;
   // Fetch the blog post based on the slug
   const blog = await getBlog(slug);
 

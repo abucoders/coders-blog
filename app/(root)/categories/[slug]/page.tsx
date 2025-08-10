@@ -11,7 +11,8 @@ import { getCategorieBlogs } from "@/service/categories.service";
 import { Dot, Home, Layers } from "lucide-react";
 import Link from "next/link";
 
-export async function generateMetadata({ params: { slug } }: Props) {
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
   const categorie = await getCategorieBlogs(slug);
 
   return {
@@ -20,12 +21,13 @@ export async function generateMetadata({ params: { slug } }: Props) {
 }
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-const CategoriesPage = async ({ params: { slug } }: Props) => {
+const CategoriesPage = async ({ params }: Props) => {
+  const { slug } = await params;
   const categorie = await getCategorieBlogs(slug);
 
   return (
