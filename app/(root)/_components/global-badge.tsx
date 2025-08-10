@@ -4,7 +4,7 @@ import { Minus } from "lucide-react";
 import Link from "next/link";
 
 interface Props {
-  items: { name: string; slug: string }[];
+  items: { title: string; slug: string }[];
   title?: string;
   slug: string;
 }
@@ -25,13 +25,16 @@ const GlobalBadge = ({ items, title, slug }: Props) => {
 
       <div className="flex flex-wrap gap-2">
         {items.map(item => (
-          <Badge
-            key={item.slug}
-            className="rounded-sm px-2 py-1 cursor-pointer bg-primary/20"
-            variant={"secondary"}
-          >
-            {item.name}
-          </Badge>
+          <Link key={item.slug} href={`/${slug}/${item.slug}`}>
+            <DrawerClose>
+              <Badge
+                className="rounded-sm px-2 py-1 cursor-pointer bg-primary/20"
+                variant={"secondary"}
+              >
+                {item.title}
+              </Badge>
+            </DrawerClose>
+          </Link>
         ))}
       </div>
     </div>
