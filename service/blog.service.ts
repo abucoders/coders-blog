@@ -6,7 +6,7 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!;
 export const getBlogs = async () => {
   const query = gql`
     query Blogs {
-      blogs {
+      blogs(where: { archive: false }) {
         id
         title
         slug

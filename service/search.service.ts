@@ -48,7 +48,7 @@ export const getCategoriesTags = async () => {
 export const getSearchBlogs = async (title: string) => {
   const query = gql`
     query SearchBlogs($title: String!) {
-      blogs(where: { title_not_contains: $title }) {
+      blogs(where: { title_contains: $title }) {
         id
         title
         slug
