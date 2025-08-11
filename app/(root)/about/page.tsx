@@ -113,7 +113,11 @@ const AboutPage = async () => {
 
       <div className="flex justify-around max-md:flex-col max-md:space-y-4 max-md:items-center">
         {authors.map(author => (
-          <AuthorCard key={author.id} {...author} blogs={[author.blogs]} />
+          <AuthorCard
+            key={author.id}
+            {...author}
+            blogs={Array.isArray(author.blogs) ? author.blogs : [author.blogs]}
+          />
         ))}
       </div>
     </div>
